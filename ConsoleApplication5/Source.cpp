@@ -4,12 +4,11 @@
 #include <boost/property_tree/json_parser.hpp>
 #include <boost/foreach.hpp>
 #include <boost/optional.hpp>
-using namespace boost::property_tree;
 
 std::string data(const char* filepath, const char* directory) {
-	ptree pt;
+	boost::property_tree::ptree pt;
 	read_json(filepath, pt);
-	boost::optional<std::string> value = pt.get_optional<std::string>(directory);
+	auto value = pt.get_optional<std::string>(directory);
 	return value.get();
 }
 
