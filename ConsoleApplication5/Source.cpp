@@ -11,9 +11,10 @@ std::string data(boost::property_tree::ptree& pt, const char* directory) {
 int main(void) {
 	boost::property_tree::ptree pt;
 	read_json("test.json", pt);
-	std::cout << data(pt, "Data.str") << std::endl << std::endl;
+	auto& p = pt.get_child("Data");
+	std::cout << data(p, "str") << std::endl << std::endl;
 
-	for (auto& child : pt.get_child("Data.info")) {
+	for (auto& child : p.get_child("info")) {
 		std::cout
 			<< "id: " << child.second.get_optional<int>("id").get() << std::endl
 			<< "name:" << child.second.get_optional<std::string>("name").get() << std::endl;
