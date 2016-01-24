@@ -30,7 +30,7 @@ int main(void) {
 	boost::property_tree::ptree pt;
 	try {
 		read_json("test.json", pt);
-		auto& p = pt.get_child("Data");
+		auto p = pt.get_child("Data");
 		std::cout << data(p, "str") << std::endl << std::endl;
 		std::wcout.imbue(std::locale(""));
 		for (auto& child : p.get_child("info")) {
